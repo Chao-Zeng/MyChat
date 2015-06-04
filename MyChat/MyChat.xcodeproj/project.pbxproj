@@ -13,6 +13,8 @@
 		566C38311B16F0960031BA3C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 566C38301B16F0960031BA3C /* Images.xcassets */; };
 		566C38341B16F0960031BA3C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 566C38321B16F0960031BA3C /* LaunchScreen.xib */; };
 		566C38401B16F0960031BA3C /* MyChatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 566C383F1B16F0960031BA3C /* MyChatTests.m */; };
+		56E5A3F71B1FF3C300F7F6C4 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E5A3F61B1FF3C300F7F6C4 /* Message.m */; };
+		56E5A4011B1FF86B00F7F6C4 /* PersonInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E5A4001B1FF86B00F7F6C4 /* PersonInfo.m */; };
 		56F022D71B1C5B7600881991 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F022D41B1C5B7600881991 /* ChatViewController.m */; };
 		56F022D81B1C5B7600881991 /* FunctionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F022D61B1C5B7600881991 /* FunctionViewController.m */; };
 		56F022DB1B1C5B8600881991 /* DiscoveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F022DA1B1C5B8600881991 /* DiscoveryViewController.m */; };
@@ -42,6 +44,10 @@
 		566C38391B16F0960031BA3C /* MyChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyChatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		566C383E1B16F0960031BA3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		566C383F1B16F0960031BA3C /* MyChatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyChatTests.m; sourceTree = "<group>"; };
+		56E5A3F51B1FF3C300F7F6C4 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Message.h; path = DataBase/Message.h; sourceTree = "<group>"; };
+		56E5A3F61B1FF3C300F7F6C4 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Message.m; path = DataBase/Message.m; sourceTree = "<group>"; };
+		56E5A3FF1B1FF86B00F7F6C4 /* PersonInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersonInfo.h; path = DataBase/PersonInfo.h; sourceTree = "<group>"; };
+		56E5A4001B1FF86B00F7F6C4 /* PersonInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersonInfo.m; path = DataBase/PersonInfo.m; sourceTree = "<group>"; };
 		56F022D31B1C5B7600881991 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatViewController.h; path = Chat/ChatViewController.h; sourceTree = "<group>"; };
 		56F022D41B1C5B7600881991 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatViewController.m; path = Chat/ChatViewController.m; sourceTree = "<group>"; };
 		56F022D51B1C5B7600881991 /* FunctionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FunctionViewController.h; path = Chat/FunctionViewController.h; sourceTree = "<group>"; };
@@ -93,6 +99,7 @@
 		566C381F1B16F0950031BA3C /* MyChat */ = {
 			isa = PBXGroup;
 			children = (
+				56E5A3F81B1FF3D300F7F6C4 /* DataBase */,
 				56F022CD1B180F4200881991 /* Contacts */,
 				56F022CF1B180F7E00881991 /* Setting */,
 				56F022CE1B180F6600881991 /* Discovery */,
@@ -131,6 +138,17 @@
 				566C383E1B16F0960031BA3C /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		56E5A3F81B1FF3D300F7F6C4 /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				56E5A3FF1B1FF86B00F7F6C4 /* PersonInfo.h */,
+				56E5A4001B1FF86B00F7F6C4 /* PersonInfo.m */,
+				56E5A3F51B1FF3C300F7F6C4 /* Message.h */,
+				56E5A3F61B1FF3C300F7F6C4 /* Message.m */,
+			);
+			name = DataBase;
 			sourceTree = "<group>";
 		};
 		56F022CC1B180F1C00881991 /* Chat */ = {
@@ -276,7 +294,9 @@
 				56F022D71B1C5B7600881991 /* ChatViewController.m in Sources */,
 				56F022DE1B1C5B9B00881991 /* SettingViewController.m in Sources */,
 				56F022DB1B1C5B8600881991 /* DiscoveryViewController.m in Sources */,
+				56E5A3F71B1FF3C300F7F6C4 /* Message.m in Sources */,
 				56F022D81B1C5B7600881991 /* FunctionViewController.m in Sources */,
+				56E5A4011B1FF86B00F7F6C4 /* PersonInfo.m in Sources */,
 				566C38291B16F0950031BA3C /* MyChat.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
