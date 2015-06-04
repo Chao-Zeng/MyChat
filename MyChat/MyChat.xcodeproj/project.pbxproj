@@ -15,6 +15,7 @@
 		566C38401B16F0960031BA3C /* MyChatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 566C383F1B16F0960031BA3C /* MyChatTests.m */; };
 		56E5A3F71B1FF3C300F7F6C4 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E5A3F61B1FF3C300F7F6C4 /* Message.m */; };
 		56E5A4011B1FF86B00F7F6C4 /* PersonInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E5A4001B1FF86B00F7F6C4 /* PersonInfo.m */; };
+		56E5A4041B20579100F7F6C4 /* PersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E5A4031B20579100F7F6C4 /* PersonalInfoViewController.m */; };
 		56F022D71B1C5B7600881991 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F022D41B1C5B7600881991 /* ChatViewController.m */; };
 		56F022D81B1C5B7600881991 /* FunctionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F022D61B1C5B7600881991 /* FunctionViewController.m */; };
 		56F022DB1B1C5B8600881991 /* DiscoveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F022DA1B1C5B8600881991 /* DiscoveryViewController.m */; };
@@ -48,6 +49,8 @@
 		56E5A3F61B1FF3C300F7F6C4 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Message.m; path = DataBase/Message.m; sourceTree = "<group>"; };
 		56E5A3FF1B1FF86B00F7F6C4 /* PersonInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersonInfo.h; path = DataBase/PersonInfo.h; sourceTree = "<group>"; };
 		56E5A4001B1FF86B00F7F6C4 /* PersonInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersonInfo.m; path = DataBase/PersonInfo.m; sourceTree = "<group>"; };
+		56E5A4021B20579100F7F6C4 /* PersonalInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersonalInfoViewController.h; path = Setting/PersonalInfoViewController.h; sourceTree = "<group>"; };
+		56E5A4031B20579100F7F6C4 /* PersonalInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersonalInfoViewController.m; path = Setting/PersonalInfoViewController.m; sourceTree = "<group>"; };
 		56F022D31B1C5B7600881991 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatViewController.h; path = Chat/ChatViewController.h; sourceTree = "<group>"; };
 		56F022D41B1C5B7600881991 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatViewController.m; path = Chat/ChatViewController.m; sourceTree = "<group>"; };
 		56F022D51B1C5B7600881991 /* FunctionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FunctionViewController.h; path = Chat/FunctionViewController.h; sourceTree = "<group>"; };
@@ -185,6 +188,8 @@
 			children = (
 				56F022DC1B1C5B9B00881991 /* SettingViewController.h */,
 				56F022DD1B1C5B9B00881991 /* SettingViewController.m */,
+				56E5A4021B20579100F7F6C4 /* PersonalInfoViewController.h */,
+				56E5A4031B20579100F7F6C4 /* PersonalInfoViewController.m */,
 			);
 			name = Setting;
 			sourceTree = "<group>";
@@ -290,6 +295,7 @@
 			files = (
 				566C38261B16F0950031BA3C /* AppDelegate.m in Sources */,
 				56F022E11B1C5BB300881991 /* ContactsViewController.m in Sources */,
+				56E5A4041B20579100F7F6C4 /* PersonalInfoViewController.m in Sources */,
 				566C38231B16F0950031BA3C /* main.m in Sources */,
 				56F022D71B1C5B7600881991 /* ChatViewController.m in Sources */,
 				56F022DE1B1C5B9B00881991 /* SettingViewController.m in Sources */,

@@ -7,6 +7,7 @@
 //
 
 #import "SettingViewController.h"
+#import "PersonalInfoViewController.h"
 
 @interface SettingViewController ()
 
@@ -40,7 +41,7 @@
     self.settingTableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
     self.settingTableView.dataSource = self;
     self.settingTableView.delegate = self;
-    self.settingTableView.sectionHeaderHeight = 5.0;
+    //self.settingTableView.sectionHeaderHeight = 5.0;
     [self.view addSubview:self.settingTableView];
 }
 
@@ -89,6 +90,27 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
+}
+
+//UITableViewDelegate protocol
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 5.0;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 5.0;
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
+    PersonalInfoViewController *personalInfoViewController = [[PersonalInfoViewController alloc] initWithStyle:UITableViewStylePlain];
+    
+    [self.navigationController pushViewController:personalInfoViewController animated:TRUE];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    PersonalInfoViewController *personalInfoViewController = [[PersonalInfoViewController alloc] initWithStyle:UITableViewStylePlain];
+    
+    [self.navigationController pushViewController:personalInfoViewController animated:TRUE];
 }
 
 @end
