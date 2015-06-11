@@ -7,9 +7,11 @@
 //
 
 #import "ContactsViewController.h"
+#import "AddContactsViewController.h"
 
 @interface ContactsViewController ()
 -(id)init;
+-(void)presentAddContactsViewController;
 @end
 
 @implementation ContactsViewController
@@ -28,6 +30,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor yellowColor];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(presentAddContactsViewController)];
     
 }
 
@@ -45,5 +48,10 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)presentAddContactsViewController{
+    AddContactsViewController *addContactsViewController = [[AddContactsViewController alloc] initWithNibName:nil bundle:nil];
+    [self.navigationController pushViewController:addContactsViewController animated:YES];
+}
 
 @end

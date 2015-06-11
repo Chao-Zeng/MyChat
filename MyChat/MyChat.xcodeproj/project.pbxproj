@@ -13,6 +13,7 @@
 		566C38311B16F0960031BA3C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 566C38301B16F0960031BA3C /* Images.xcassets */; };
 		566C38341B16F0960031BA3C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 566C38321B16F0960031BA3C /* LaunchScreen.xib */; };
 		566C38401B16F0960031BA3C /* MyChatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 566C383F1B16F0960031BA3C /* MyChatTests.m */; };
+		56D9D6691B298062004B665E /* AddContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D9D6681B298062004B665E /* AddContactsViewController.m */; };
 		56E5A3F71B1FF3C300F7F6C4 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E5A3F61B1FF3C300F7F6C4 /* Message.m */; };
 		56E5A4011B1FF86B00F7F6C4 /* PersonInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E5A4001B1FF86B00F7F6C4 /* PersonInfo.m */; };
 		56E5A4041B20579100F7F6C4 /* PersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E5A4031B20579100F7F6C4 /* PersonalInfoViewController.m */; };
@@ -45,6 +46,8 @@
 		566C38391B16F0960031BA3C /* MyChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyChatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		566C383E1B16F0960031BA3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		566C383F1B16F0960031BA3C /* MyChatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyChatTests.m; sourceTree = "<group>"; };
+		56D9D6671B298062004B665E /* AddContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddContactsViewController.h; path = Contacts/AddContactsViewController.h; sourceTree = "<group>"; };
+		56D9D6681B298062004B665E /* AddContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddContactsViewController.m; path = Contacts/AddContactsViewController.m; sourceTree = "<group>"; };
 		56E5A3F51B1FF3C300F7F6C4 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Message.h; path = DataBase/Message.h; sourceTree = "<group>"; };
 		56E5A3F61B1FF3C300F7F6C4 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Message.m; path = DataBase/Message.m; sourceTree = "<group>"; };
 		56E5A3FF1B1FF86B00F7F6C4 /* PersonInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersonInfo.h; path = DataBase/PersonInfo.h; sourceTree = "<group>"; };
@@ -170,6 +173,8 @@
 			children = (
 				56F022DF1B1C5BB300881991 /* ContactsViewController.h */,
 				56F022E01B1C5BB300881991 /* ContactsViewController.m */,
+				56D9D6671B298062004B665E /* AddContactsViewController.h */,
+				56D9D6681B298062004B665E /* AddContactsViewController.m */,
 			);
 			name = Contacts;
 			sourceTree = "<group>";
@@ -294,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				566C38261B16F0950031BA3C /* AppDelegate.m in Sources */,
+				56D9D6691B298062004B665E /* AddContactsViewController.m in Sources */,
 				56F022E11B1C5BB300881991 /* ContactsViewController.m in Sources */,
 				56E5A4041B20579100F7F6C4 /* PersonalInfoViewController.m in Sources */,
 				566C38231B16F0950031BA3C /* main.m in Sources */,

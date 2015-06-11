@@ -161,11 +161,7 @@
     
     self.tabBarController = [[UITabBarController alloc] init];
     self.tabBarController.viewControllers = controllers;
-    /*[[self.tabBarController.tabBar.items objectAtIndex:0] setTitle:@"Chat"];
-    [[self.tabBarController.tabBar.items objectAtIndex:1] setTitle:@"Contacts"];
-    [[self.tabBarController.tabBar.items objectAtIndex:2] setTitle:@"Discovery"];
-    [[self.tabBarController.tabBar.items objectAtIndex:3] setTitle:@"Setting"];*/
-    
+        
     self.window.rootViewController = self.tabBarController;
 }
 
