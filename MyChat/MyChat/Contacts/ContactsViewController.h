@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 
-@interface ContactsViewController : UIViewController
+//Protocol NSFetchedResultsSectionInfo
+@interface ContactsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate,  NSFetchedResultsControllerDelegate>
 
 @end

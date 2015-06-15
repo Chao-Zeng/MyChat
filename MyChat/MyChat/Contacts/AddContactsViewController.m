@@ -7,6 +7,8 @@
 //
 
 #import "AddContactsViewController.h"
+#import "AppDelegate.h"
+#include "PersonInfo.h"
 
 @interface AddContactsViewController ()
 
@@ -26,6 +28,7 @@
 
 - (void)initView;
 - (void)layoutView;
+- (void)addContacts;
 
 @end
 
@@ -49,6 +52,32 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)addContacts{
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *managedObjectContext = [appDelegate managedObjectContext];
+    
+    PersonInfo *personInfo = [NSEntityDescription insertNewObjectForEntityForName:@"PersonInfo"
+                                                           inManagedObjectContext:managedObjectContext];
+    personInfo.name = self.nameTextField.text;
+    personInfo.weiXinNumber = self.weiXinNumberTextField.text;
+    personInfo.address = self.addressTextField.text;
+    personInfo.headPortrait = nil;
+    personInfo.signature = self.signatureTextField.text;
+    personInfo.gender = [self.genderSegmentedControl titleForSegmentAtIndex:
+                                [self.genderSegmentedControl selectedSegmentIndex]];
+    
+    NSError* error;
+    BOOL isSaveSuccess=[managedObjectContext save:&error];
+    if (!isSaveSuccess) {
+        NSLog(@"add contacts error:%@",error);
+    }else{
+        NSLog(@"add contacts successful!");
+    }
+    
+    //[self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)initView{
@@ -123,6 +152,7 @@
     self.addNewContactsButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.addNewContactsButton.translatesAutoresizingMaskIntoConstraints = NO;
     [self.addNewContactsButton setTitle:@"添加联系人" forState:UIControlStateNormal];
+    [self.addNewContactsButton addTarget:self action:@selector(addContacts) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.addNewContactsButton];
     
     [self layoutView];
