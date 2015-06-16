@@ -29,6 +29,7 @@
 - (void)initView;
 - (void)layoutView;
 - (void)addContacts;
+- (void)selectHeadPortrait;
 
 @end
 
@@ -80,6 +81,58 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)selectHeadPortrait{
+    UIAlertController *selectHeadPortraitController = [UIAlertController
+                                                       alertControllerWithTitle:@"选择头像"
+                                                       message:@"select head portrait"
+                                                       preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
+                                                           style:UIAlertActionStyleCancel
+                                                         handler:nil];
+    
+    [selectHeadPortraitController addAction:cancelAction];
+    
+    UIAlertAction *selectFromPotoLibrarys = [UIAlertAction actionWithTitle:@"相册"
+                                                                     style:UIAlertActionStyleDefault
+                                                                   handler:^(UIAlertAction *action) {
+        UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+        imagePickerController.delegate = self;
+        imagePickerController.allowsEditing = YES;
+        imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentViewController:imagePickerController animated:YES completion:nil];
+    }];
+    
+    [selectHeadPortraitController addAction:selectFromPotoLibrarys];
+    
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        UIAlertAction *selectFromCamer = [UIAlertAction actionWithTitle:@"照相机"
+                                                                  style:UIAlertActionStyleDefault
+                                                                handler:^(UIAlertAction *action) {
+                                                                    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+                                                                    imagePickerController.delegate = self;
+                                                                    imagePickerController.allowsEditing = YES;
+                                                                    imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+                                                                    [self presentViewController:imagePickerController animated:YES completion:nil];
+                                                                }];
+        
+        [selectHeadPortraitController addAction:selectFromCamer];
+    }
+    
+    [self presentViewController:selectHeadPortraitController animated:YES completion:nil];
+}
+
+//========UIImagePickerControllerDelegate=============
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo{
+    self.headPortraitImageView.image = image;
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+//==========init and layout views=====================
 - (void)initView{
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -136,6 +189,10 @@
     self.headPortraitImageView = [[UIImageView alloc] init];
     self.headPortraitImageView.translatesAutoresizingMaskIntoConstraints = NO;
     self.headPortraitImageView.backgroundColor = [UIColor redColor];
+    self.headPortraitImageView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *selectHeadPortraitClick =[[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                               action:@selector(selectHeadPortrait)];
+    [self.headPortraitImageView addGestureRecognizer:selectHeadPortraitClick];
     [self.view addSubview:self.headPortraitImageView];
     
     self.genderLabel = [[UILabel alloc] init];

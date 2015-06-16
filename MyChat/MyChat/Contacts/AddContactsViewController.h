@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddContactsViewController : UIViewController
+@interface AddContactsViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @end
