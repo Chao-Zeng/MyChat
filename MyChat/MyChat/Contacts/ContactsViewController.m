@@ -8,6 +8,7 @@
 
 #import "ContactsViewController.h"
 #import "AddContactsViewController.h"
+#import "EditContactsViewController.h"
 #import "PersonInfo.h"
 
 @interface ContactsViewController ()
@@ -119,7 +120,9 @@
     PersonInfo *personInfo = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     cell.textLabel.text = personInfo.name;
-    
+    cell.imageView.image = [UIImage imageWithContentsOfFile:personInfo.headPortrait];
+    //cell.imageView.contentMode = UIViewContentModeScaleToFill;
+        
     return cell;
 }
 
@@ -160,6 +163,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    PersonInfo *personInfo = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    EditContactsViewController *editContactsViewController = [[EditContactsViewController alloc] initWithPersonInfo:personInfo];
+    
+    [self.navigationController pushViewController:editContactsViewController animated:YES];
 }
 
 

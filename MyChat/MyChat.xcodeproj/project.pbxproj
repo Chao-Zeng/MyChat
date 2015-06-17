@@ -16,6 +16,9 @@
 		568747711B2EB930003440CB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 568747701B2EB930003440CB /* CoreData.framework */; };
 		568747731B2EB951003440CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 568747721B2EB951003440CB /* Foundation.framework */; };
 		568747751B2EB95A003440CB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 568747741B2EB95A003440CB /* UIKit.framework */; };
+		5690BE471B314B3F00D5AE21 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5690BE451B314B3F00D5AE21 /* Default.png */; };
+		5690BE481B314B3F00D5AE21 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5690BE461B314B3F00D5AE21 /* Icon.png */; };
+		5690BE4B1B315FA700D5AE21 /* EditContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5690BE4A1B315FA700D5AE21 /* EditContactsViewController.m */; };
 		56D9D6691B298062004B665E /* AddContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D9D6681B298062004B665E /* AddContactsViewController.m */; };
 		56E5A3F71B1FF3C300F7F6C4 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E5A3F61B1FF3C300F7F6C4 /* Message.m */; };
 		56E5A4011B1FF86B00F7F6C4 /* PersonInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E5A4001B1FF86B00F7F6C4 /* PersonInfo.m */; };
@@ -52,6 +55,10 @@
 		568747701B2EB930003440CB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		568747721B2EB951003440CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		568747741B2EB95A003440CB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		5690BE451B314B3F00D5AE21 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Images/Default.png; sourceTree = "<group>"; };
+		5690BE461B314B3F00D5AE21 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Resources/Images/Icon.png; sourceTree = "<group>"; };
+		5690BE491B315FA700D5AE21 /* EditContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditContactsViewController.h; path = Contacts/EditContactsViewController.h; sourceTree = "<group>"; };
+		5690BE4A1B315FA700D5AE21 /* EditContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditContactsViewController.m; path = Contacts/EditContactsViewController.m; sourceTree = "<group>"; };
 		56D9D6671B298062004B665E /* AddContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddContactsViewController.h; path = Contacts/AddContactsViewController.h; sourceTree = "<group>"; };
 		56D9D6681B298062004B665E /* AddContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddContactsViewController.m; path = Contacts/AddContactsViewController.m; sourceTree = "<group>"; };
 		56E5A3F51B1FF3C300F7F6C4 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Message.h; path = DataBase/Message.h; sourceTree = "<group>"; };
@@ -115,6 +122,7 @@
 		566C381F1B16F0950031BA3C /* MyChat */ = {
 			isa = PBXGroup;
 			children = (
+				5690BE431B314B0100D5AE21 /* Resources */,
 				56E5A3F81B1FF3D300F7F6C4 /* DataBase */,
 				56F022CD1B180F4200881991 /* Contacts */,
 				56F022CF1B180F7E00881991 /* Setting */,
@@ -166,6 +174,23 @@
 			name = framework;
 			sourceTree = "<group>";
 		};
+		5690BE431B314B0100D5AE21 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5690BE441B314B0C00D5AE21 /* Images */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		5690BE441B314B0C00D5AE21 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				5690BE451B314B3F00D5AE21 /* Default.png */,
+				5690BE461B314B3F00D5AE21 /* Icon.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		56E5A3F81B1FF3D300F7F6C4 /* DataBase */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +220,8 @@
 				56F022E01B1C5BB300881991 /* ContactsViewController.m */,
 				56D9D6671B298062004B665E /* AddContactsViewController.h */,
 				56D9D6681B298062004B665E /* AddContactsViewController.m */,
+				5690BE491B315FA700D5AE21 /* EditContactsViewController.h */,
+				5690BE4A1B315FA700D5AE21 /* EditContactsViewController.m */,
 			);
 			name = Contacts;
 			sourceTree = "<group>";
@@ -299,7 +326,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5690BE481B314B3F00D5AE21 /* Icon.png in Resources */,
 				566C38341B16F0960031BA3C /* LaunchScreen.xib in Resources */,
+				5690BE471B314B3F00D5AE21 /* Default.png in Resources */,
 				566C38311B16F0960031BA3C /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -330,6 +359,7 @@
 				56F022D81B1C5B7600881991 /* FunctionViewController.m in Sources */,
 				56E5A4011B1FF86B00F7F6C4 /* PersonInfo.m in Sources */,
 				566C38291B16F0950031BA3C /* MyChat.xcdatamodeld in Sources */,
+				5690BE4B1B315FA700D5AE21 /* EditContactsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

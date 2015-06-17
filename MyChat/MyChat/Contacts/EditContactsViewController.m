@@ -1,16 +1,18 @@
 //
-//  AddContactsViewController.m
+//  EditContactsViewController.m
 //  MyChat
 //
-//  Created by Charles on 15/6/11.
+//  Created by Charles on 15/6/17.
 //  Copyright (c) 2015年 Charles. All rights reserved.
 //
 
-#import "AddContactsViewController.h"
+#import "EditContactsViewController.h"
 #import "AppDelegate.h"
-#import "PersonInfo.h"
 
-@interface AddContactsViewController ()
+
+@interface EditContactsViewController ()
+
+@property PersonInfo *personInfo;
 
 @property UILabel *nameLabel;
 @property UITextField *nameTextField;
@@ -28,18 +30,28 @@
 
 - (void)initView;
 - (void)layoutView;
-- (void)addContacts;
+- (void)updateContacts;
 - (void)selectHeadPortrait;
 
 @end
 
-@implementation AddContactsViewController
+@implementation EditContactsViewController
+
+- (id)initWithPersonInfo:(PersonInfo*)personInfo
+{
+    self = [self initWithNibName:nil bundle:nil];
+    if (self) {
+        self.personInfo = personInfo;
+    }
+    
+    return self;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = @"AddContacts";
+        self.title = @"EditContacts";
     }
     return self;
 }
@@ -55,12 +67,22 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)addContacts{
+- (void)updateContacts{
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *managedObjectContext = [appDelegate managedObjectContext];
     
-    PersonInfo *personInfo = [NSEntityDescription insertNewObjectForEntityForName:@"PersonInfo"
-                                                           inManagedObjectContext:managedObjectContext];
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"PersonInfo"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name=%@", self.personInfo.name];
+    [fetchRequest setPredicate:predicate];
+    NSError *error;
+    NSArray *resultArray = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    if (error || [resultArray count] != 1) {
+        NSLog(@"fetch contacts %@ info from database error:%@!", self.personInfo.name, error);
+        return;
+    }
+    
+    PersonInfo *personInfo = [resultArray objectAtIndex:0];
     personInfo.name = self.nameTextField.text;
     personInfo.weiXinNumber = self.weiXinNumberTextField.text;
     personInfo.address = self.addressTextField.text;
@@ -87,14 +109,14 @@
         self.genderSegmentedControl.selectedSegmentIndex = 0;
     }
     personInfo.gender = [self.genderSegmentedControl titleForSegmentAtIndex:
-                                [self.genderSegmentedControl selectedSegmentIndex]];
+                         [self.genderSegmentedControl selectedSegmentIndex]];
     
-    NSError* error;
+    
     BOOL isSaveSuccess=[managedObjectContext save:&error];
     if (!isSaveSuccess) {
-        NSLog(@"add contacts error:%@",error);
+        NSLog(@"update contacts error:%@",error);
     }else{
-        NSLog(@"add contacts successful!");
+        NSLog(@"update contacts successful!");
     }
     
     //[self dismissViewControllerAnimated:YES completion:nil];
@@ -116,12 +138,12 @@
     UIAlertAction *selectFromPotoLibrarys = [UIAlertAction actionWithTitle:@"相册"
                                                                      style:UIAlertActionStyleDefault
                                                                    handler:^(UIAlertAction *action) {
-        UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-        imagePickerController.delegate = self;
-        imagePickerController.allowsEditing = YES;
-        imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        [self presentViewController:imagePickerController animated:YES completion:nil];
-    }];
+                                                                       UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+                                                                       imagePickerController.delegate = self;
+                                                                       imagePickerController.allowsEditing = YES;
+                                                                       imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                                                                       [self presentViewController:imagePickerController animated:YES completion:nil];
+                                                                   }];
     
     [selectHeadPortraitController addAction:selectFromPotoLibrarys];
     
@@ -165,6 +187,7 @@
     self.nameTextField = [[UITextField alloc] init];
     self.nameTextField.translatesAutoresizingMaskIntoConstraints = NO;
     self.nameTextField.backgroundColor = [UIColor colorWithRed:211.0f/255.0f green:211.0f/255.0f blue:211.0f/255.0f alpha:1.0];
+    self.nameTextField.text = self.personInfo.name;
     [self.view addSubview:self.nameTextField];
     
     self.weiXinNumberLabel = [[UILabel alloc] init];
@@ -176,6 +199,7 @@
     self.weiXinNumberTextField = [[UITextField alloc] init];
     self.weiXinNumberTextField.translatesAutoresizingMaskIntoConstraints = NO;
     self.weiXinNumberTextField.backgroundColor = [UIColor colorWithRed:211.0f/255.0f green:211.0f/255.0f blue:211.0f/255.0f alpha:1.0];
+    self.weiXinNumberTextField.text = self.personInfo.weiXinNumber;
     [self.view addSubview:self.weiXinNumberTextField];
     
     self.addressLabel = [[UILabel alloc] init];
@@ -187,6 +211,7 @@
     self.addressTextField = [[UITextField alloc] init];
     self.addressTextField.translatesAutoresizingMaskIntoConstraints = NO;
     self.addressTextField.backgroundColor = [UIColor colorWithRed:211.0f/255.0f green:211.0f/255.0f blue:211.0f/255.0f alpha:1.0];
+    self.addressTextField.text = self.personInfo.address;
     [self.view addSubview:self.addressTextField];
     
     self.signatureLabel = [[UILabel alloc] init];
@@ -198,6 +223,7 @@
     self.signatureTextField = [[UITextField alloc] init];
     self.signatureTextField.translatesAutoresizingMaskIntoConstraints = NO;
     self.signatureTextField.backgroundColor = [UIColor colorWithRed:211.0f/255.0f green:211.0f/255.0f blue:211.0f/255.0f alpha:1.0];
+    self.signatureTextField.text = self.personInfo.signature;
     [self.view addSubview:self.signatureTextField];
     
     self.headPortraitLabel = [[UILabel alloc] init];
@@ -211,8 +237,9 @@
     self.headPortraitImageView.backgroundColor = [UIColor redColor];
     self.headPortraitImageView.userInteractionEnabled = YES;
     UITapGestureRecognizer *selectHeadPortraitClick =[[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                               action:@selector(selectHeadPortrait)];
+                                                                                             action:@selector(selectHeadPortrait)];
     [self.headPortraitImageView addGestureRecognizer:selectHeadPortraitClick];
+    self.headPortraitImageView.image = [UIImage imageWithContentsOfFile:self.personInfo.headPortrait];
     [self.view addSubview:self.headPortraitImageView];
     
     self.genderLabel = [[UILabel alloc] init];
@@ -221,15 +248,17 @@
     self.genderLabel.textAlignment = NSTextAlignmentJustified;
     [self.view addSubview:self.genderLabel];
     
-    self.genderSegmentedControl = [[UISegmentedControl alloc] initWithItems:
-                                   [NSMutableArray arrayWithObjects:@"男", @"女", nil]];
+    NSMutableArray *genderArray = [NSMutableArray arrayWithObjects:@"男", @"女", nil];
+    self.genderSegmentedControl = [[UISegmentedControl alloc] initWithItems:genderArray];
     self.genderSegmentedControl.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    self.genderSegmentedControl.selectedSegmentIndex = [genderArray indexOfObject:self.personInfo.gender];
     [self.view addSubview:self.genderSegmentedControl];
     
     self.addNewContactsButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.addNewContactsButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.addNewContactsButton setTitle:@"添加联系人" forState:UIControlStateNormal];
-    [self.addNewContactsButton addTarget:self action:@selector(addContacts) forControlEvents:UIControlEventTouchUpInside];
+    [self.addNewContactsButton setTitle:@"更新联系人" forState:UIControlStateNormal];
+    [self.addNewContactsButton addTarget:self action:@selector(updateContacts) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.addNewContactsButton];
     
     [self layoutView];
@@ -395,14 +424,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];

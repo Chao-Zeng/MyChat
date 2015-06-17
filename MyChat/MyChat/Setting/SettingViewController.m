@@ -50,17 +50,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-//UITableViewDataSource protocol
+//=============UITableViewDataSource protocol=================
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 4;
 }
@@ -73,10 +63,6 @@
     return 1;
 
 }
-
-
-// Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
-// Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString *cellReuseIdentifier = @"cellReuseIdentifier";
@@ -92,7 +78,7 @@
     return cell;
 }
 
-//UITableViewDelegate protocol
+//==============UITableViewDelegate protocol==================
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 5.0;
 }
@@ -108,6 +94,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     PersonalInfoViewController *personalInfoViewController = [[PersonalInfoViewController alloc] initWithStyle:UITableViewStylePlain];
     
     [self.navigationController pushViewController:personalInfoViewController animated:TRUE];
