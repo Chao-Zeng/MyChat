@@ -72,7 +72,7 @@
     NSManagedObjectContext *managedObjectContext = [appDelegate managedObjectContext];
     
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"PersonInfo"];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name=%@", self.personInfo.name];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@", self.personInfo.name];
     [fetchRequest setPredicate:predicate];
     NSError *error;
     NSArray *resultArray = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
