@@ -13,6 +13,8 @@
 		566C38311B16F0960031BA3C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 566C38301B16F0960031BA3C /* Images.xcassets */; };
 		566C38341B16F0960031BA3C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 566C38321B16F0960031BA3C /* LaunchScreen.xib */; };
 		566C38401B16F0960031BA3C /* MyChatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 566C383F1B16F0960031BA3C /* MyChatTests.m */; };
+		5672FBC81B535BC300B0F8F3 /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = 5672FBC61B535BC300B0F8F3 /* pinyin.c */; };
+		5672FBCB1B535F1800B0F8F3 /* ChineseString.m in Sources */ = {isa = PBXBuildFile; fileRef = 5672FBCA1B535F1800B0F8F3 /* ChineseString.m */; };
 		568747711B2EB930003440CB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 568747701B2EB930003440CB /* CoreData.framework */; };
 		568747731B2EB951003440CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 568747721B2EB951003440CB /* Foundation.framework */; };
 		568747751B2EB95A003440CB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 568747741B2EB95A003440CB /* UIKit.framework */; };
@@ -52,6 +54,10 @@
 		566C38391B16F0960031BA3C /* MyChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyChatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		566C383E1B16F0960031BA3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		566C383F1B16F0960031BA3C /* MyChatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyChatTests.m; sourceTree = "<group>"; };
+		5672FBC61B535BC300B0F8F3 /* pinyin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pinyin.c; path = Tools/pinyin.c; sourceTree = "<group>"; };
+		5672FBC71B535BC300B0F8F3 /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pinyin.h; path = Tools/pinyin.h; sourceTree = "<group>"; };
+		5672FBC91B535F1800B0F8F3 /* ChineseString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChineseString.h; path = Tools/ChineseString.h; sourceTree = "<group>"; };
+		5672FBCA1B535F1800B0F8F3 /* ChineseString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChineseString.m; path = Tools/ChineseString.m; sourceTree = "<group>"; };
 		568747701B2EB930003440CB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		568747721B2EB951003440CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		568747741B2EB95A003440CB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -122,6 +128,7 @@
 		566C381F1B16F0950031BA3C /* MyChat */ = {
 			isa = PBXGroup;
 			children = (
+				5672FBC51B535B6400B0F8F3 /* Tools */,
 				5690BE431B314B0100D5AE21 /* Resources */,
 				56E5A3F81B1FF3D300F7F6C4 /* DataBase */,
 				56F022CD1B180F4200881991 /* Contacts */,
@@ -162,6 +169,17 @@
 				566C383E1B16F0960031BA3C /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5672FBC51B535B6400B0F8F3 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				5672FBC61B535BC300B0F8F3 /* pinyin.c */,
+				5672FBC71B535BC300B0F8F3 /* pinyin.h */,
+				5672FBC91B535F1800B0F8F3 /* ChineseString.h */,
+				5672FBCA1B535F1800B0F8F3 /* ChineseString.m */,
+			);
+			name = Tools;
 			sourceTree = "<group>";
 		};
 		568747761B2EB978003440CB /* framework */ = {
@@ -347,6 +365,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5672FBC81B535BC300B0F8F3 /* pinyin.c in Sources */,
 				566C38261B16F0950031BA3C /* AppDelegate.m in Sources */,
 				56D9D6691B298062004B665E /* AddContactsViewController.m in Sources */,
 				56F022E11B1C5BB300881991 /* ContactsViewController.m in Sources */,
@@ -357,6 +376,7 @@
 				56F022DB1B1C5B8600881991 /* DiscoveryViewController.m in Sources */,
 				56E5A3F71B1FF3C300F7F6C4 /* Message.m in Sources */,
 				56F022D81B1C5B7600881991 /* FunctionViewController.m in Sources */,
+				5672FBCB1B535F1800B0F8F3 /* ChineseString.m in Sources */,
 				56E5A4011B1FF86B00F7F6C4 /* PersonInfo.m in Sources */,
 				566C38291B16F0950031BA3C /* MyChat.xcdatamodeld in Sources */,
 				5690BE4B1B315FA700D5AE21 /* EditContactsViewController.m in Sources */,

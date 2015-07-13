@@ -6,9 +6,14 @@
 //  Copyright (c) 2015年 Charles. All rights reserved.
 //
 
+//C header
+#import <ctype.h>
+#import "pinyin.h"
+
 #import "AddContactsViewController.h"
 #import "AppDelegate.h"
 #import "PersonInfo.h"
+
 
 @interface AddContactsViewController ()
 
@@ -62,6 +67,14 @@
     PersonInfo *personInfo = [NSEntityDescription insertNewObjectForEntityForName:@"PersonInfo"
                                                            inManagedObjectContext:managedObjectContext];
     personInfo.name = self.nameTextField.text;
+    
+    int initial = [personInfo.name characterAtIndex:0];
+    if (0 == isChinese(initial)) {
+        personInfo.initialOfName = [[NSString stringWithFormat:@"%c", pinyinFirstLetter(initial)] uppercaseString];
+    } else {
+        personInfo.initialOfName = [[NSString stringWithFormat:@"%c", initial] uppercaseString];
+    }
+    
     personInfo.weiXinNumber = self.weiXinNumberTextField.text;
     personInfo.address = self.addressTextField.text;
     

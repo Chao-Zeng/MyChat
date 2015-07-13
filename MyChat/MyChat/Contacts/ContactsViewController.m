@@ -80,7 +80,7 @@
     
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                         managedObjectContext:self.managedObjectContext
-                                                                          sectionNameKeyPath:nil
+                                                                          sectionNameKeyPath:@"initialOfName"
                                                                                    cacheName:@"PersonInfo"];
     //设置数据变化通知的代理为自己
     self.fetchedResultsController.delegate = self;
