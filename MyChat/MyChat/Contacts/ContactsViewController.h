@@ -10,6 +10,6 @@
 #import <CoreData/CoreData.h>
 
 //Protocol NSFetchedResultsSectionInfo
-@interface ContactsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate,  NSFetchedResultsControllerDelegate>
+@interface ContactsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate,  NSFetchedResultsControllerDelegate, UISearchBarDelegate>
 
 @end

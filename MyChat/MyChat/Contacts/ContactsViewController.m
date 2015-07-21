@@ -16,10 +16,12 @@
 @property UITableView *tableView;
 @property NSFetchedResultsController *fetchedResultsController;
 @property NSManagedObjectContext *managedObjectContext;
+@property UISearchBar *searchBar;
 
 - (id)init;
 - (void)presentAddContactsViewController;
 - (void)getContactsInfo;
+- (void)searchContactsWithKeyText:(NSString *)keyText;
 @end
 
 @implementation ContactsViewController
@@ -28,6 +30,7 @@
 @synthesize fetchedResultsController = _fetchedResultsController;
 @synthesize managedObjectContext = _managedObjectContext;
 
+//==================methods implementation===================================
 -(id)init
 {
     if(self = [super init])
@@ -49,6 +52,11 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(presentAddContactsViewController)];
     
+    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, 44.0f)];
+    self.searchBar.delegate = self;
+    self.searchBar.showsCancelButton = YES;
+    self.searchBar.placeholder = @"search name";
+    self.tableView.tableHeaderView = self.searchBar;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -65,6 +73,10 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
+}
 
 - (void)getContactsInfo{
     id delegate = [[UIApplication sharedApplication] delegate];
@@ -97,6 +109,22 @@
     [self.navigationController pushViewController:addContactsViewController animated:YES];
 }
 
+- (void)searchContactsWithKeyText:(NSString *)keyText{
+    NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", keyText];
+    [self.fetchedResultsController.fetchRequest setPredicate:searchPredicate];
+    
+    //delete cache
+    [NSFetchedResultsController deleteCacheWithName:@"PersonInfo"];
+    
+    NSError *error = nil;
+    BOOL success = [self.fetchedResultsController performFetch:&error];
+    if(!success){
+        NSLog(@"NSFetchedResultsController error:%@" , error);
+        return;
+    }
+    
+    [self.tableView reloadData];
+}
 
 //===========UITableViewDataSource protocol============
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -234,6 +262,29 @@
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     [self.tableView endUpdates];
+}
+
+//=====================UISearchBarDelegate protocol========================
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    [self searchContactsWithKeyText:searchText];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    searchBar.text = nil;
+    [self.fetchedResultsController.fetchRequest setPredicate:nil];
+    
+    //delete cache
+    [NSFetchedResultsController deleteCacheWithName:@"PersonInfo"];
+    
+    NSError *error = nil;
+    BOOL success = [self.fetchedResultsController performFetch:&error];
+    if(!success){
+        NSLog(@"NSFetchedResultsController error:%@" , error);
+        return;
+    }
+    
+    [self.tableView reloadData];
 }
 
 @end

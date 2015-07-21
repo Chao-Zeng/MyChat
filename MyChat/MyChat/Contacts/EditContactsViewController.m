@@ -197,6 +197,7 @@
     [self.view addSubview:self.nameLabel];
     
     self.nameTextField = [[UITextField alloc] init];
+    self.nameTextField.borderStyle = UITextBorderStyleRoundedRect;
     self.nameTextField.translatesAutoresizingMaskIntoConstraints = NO;
     self.nameTextField.backgroundColor = [UIColor colorWithRed:211.0f/255.0f green:211.0f/255.0f blue:211.0f/255.0f alpha:1.0];
     self.nameTextField.text = self.personInfo.name;
@@ -209,6 +210,7 @@
     [self.view addSubview:self.weiXinNumberLabel];
     
     self.weiXinNumberTextField = [[UITextField alloc] init];
+    self.weiXinNumberTextField.borderStyle = UITextBorderStyleRoundedRect;
     self.weiXinNumberTextField.translatesAutoresizingMaskIntoConstraints = NO;
     self.weiXinNumberTextField.backgroundColor = [UIColor colorWithRed:211.0f/255.0f green:211.0f/255.0f blue:211.0f/255.0f alpha:1.0];
     self.weiXinNumberTextField.text = self.personInfo.weiXinNumber;
@@ -221,6 +223,7 @@
     [self.view addSubview:self.addressLabel];
     
     self.addressTextField = [[UITextField alloc] init];
+    self.addressTextField.borderStyle = UITextBorderStyleRoundedRect;
     self.addressTextField.translatesAutoresizingMaskIntoConstraints = NO;
     self.addressTextField.backgroundColor = [UIColor colorWithRed:211.0f/255.0f green:211.0f/255.0f blue:211.0f/255.0f alpha:1.0];
     self.addressTextField.text = self.personInfo.address;
@@ -233,6 +236,7 @@
     [self.view addSubview:self.signatureLabel];
     
     self.signatureTextField = [[UITextField alloc] init];
+    self.signatureTextField.borderStyle = UITextBorderStyleRoundedRect;
     self.signatureTextField.translatesAutoresizingMaskIntoConstraints = NO;
     self.signatureTextField.backgroundColor = [UIColor colorWithRed:211.0f/255.0f green:211.0f/255.0f blue:211.0f/255.0f alpha:1.0];
     self.signatureTextField.text = self.personInfo.signature;
@@ -296,7 +300,7 @@
     //                               self.weiXinNumberTextField);
     
     NSDictionary *metricsDictionary = @{@"LeftSpace":@10, @"RightSpace":@10, @"TopSpace":@100, @"BottomSpace":@100,
-                                        @"VSpace":@10, @"HSpace":@10,
+                                        @"VSpace":@20, @"HSpace":@10,
                                         @"LabelWidth":@50, @"LabelHeight":@50, @"TextFieldWidth":@200,
                                         @"TextFieldHeight":@50, @"ImageWidth":@100, @"ImageHeight":@100};
     
@@ -324,7 +328,7 @@
     hLayoutstring = @"H:|-LeftSpace-[weiXinNumberLabel(>=LabelWidth)]";
     hLayoutArray = [NSLayoutConstraint constraintsWithVisualFormat:hLayoutstring options:0
                                                            metrics:metricsDictionary views:viewsDictionary];
-    vLayoutString = @"V:[nameLabel]-VSpace-[weiXinNumberLabel]";
+    vLayoutString = @"V:[nameTextField]-VSpace-[weiXinNumberLabel]";
     vLayoutArray = [NSLayoutConstraint constraintsWithVisualFormat:vLayoutString options:0
                                                            metrics:metricsDictionary views:viewsDictionary];
     [self.view addConstraints:vLayoutArray];
@@ -344,7 +348,7 @@
     hLayoutstring = @"H:|-LeftSpace-[genderLabel(>=LabelWidth)]";
     hLayoutArray = [NSLayoutConstraint constraintsWithVisualFormat:hLayoutstring options:0
                                                            metrics:metricsDictionary views:viewsDictionary];
-    vLayoutString = @"V:[weiXinNumberLabel]-VSpace-[genderLabel]";
+    vLayoutString = @"V:[weiXinNumberTextField]-VSpace-[genderLabel]";
     vLayoutArray = [NSLayoutConstraint constraintsWithVisualFormat:vLayoutString options:0
                                                            metrics:metricsDictionary views:viewsDictionary];
     [self.view addConstraints:vLayoutArray];
@@ -355,7 +359,7 @@
     hLayoutArray = [NSLayoutConstraint constraintsWithVisualFormat:hLayoutstring options:0
                                                            metrics:metricsDictionary views:viewsDictionary];
     
-    vLayoutString = @"V:[weiXinNumberLabel]-VSpace-[genderSegmentedControl]";
+    vLayoutString = @"V:[weiXinNumberTextField]-VSpace-[genderSegmentedControl]";
     vLayoutArray = [NSLayoutConstraint constraintsWithVisualFormat:vLayoutString options:0
                                                            metrics:metricsDictionary views:viewsDictionary];
     
@@ -386,7 +390,7 @@
     hLayoutstring = @"H:|-LeftSpace-[headPortraitLabel(>=LabelWidth)]";
     hLayoutArray = [NSLayoutConstraint constraintsWithVisualFormat:hLayoutstring options:0
                                                            metrics:metricsDictionary views:viewsDictionary];
-    vLayoutString = @"V:[addressLabel]-VSpace-[headPortraitLabel]";
+    vLayoutString = @"V:[addressTextField]-VSpace-[headPortraitLabel]";
     vLayoutArray = [NSLayoutConstraint constraintsWithVisualFormat:vLayoutString options:0
                                                            metrics:metricsDictionary views:viewsDictionary];
     [self.view addConstraints:vLayoutArray];
@@ -396,7 +400,7 @@
     hLayoutstring = @"H:[headPortraitLabel]-HSpace-[headPortraitImageView(==ImageWidth)]";
     hLayoutArray = [NSLayoutConstraint constraintsWithVisualFormat:hLayoutstring options:0
                                                            metrics:metricsDictionary views:viewsDictionary];
-    vLayoutString = @"V:[addressLabel]-VSpace-[headPortraitImageView(==ImageHeight)]";
+    vLayoutString = @"V:[addressTextField]-VSpace-[headPortraitImageView(==ImageHeight)]";
     vLayoutArray = [NSLayoutConstraint constraintsWithVisualFormat:vLayoutString options:0
                                                            metrics:metricsDictionary views:viewsDictionary];
     [self.view addConstraints:vLayoutArray];
