@@ -302,7 +302,7 @@
     NSDictionary *metricsDictionary = @{@"LeftSpace":@10, @"RightSpace":@10, @"TopSpace":@100, @"BottomSpace":@100,
                                         @"VSpace":@20, @"HSpace":@10,
                                         @"LabelWidth":@50, @"LabelHeight":@50, @"TextFieldWidth":@200,
-                                        @"TextFieldHeight":@50, @"ImageWidth":@100, @"ImageHeight":@100};
+                                        @"TextFieldHeight":@50, @"ImageWidth":@50, @"ImageHeight":@50};
     
     //nameLabel
     NSString *hLayoutstring = @"H:|-LeftSpace-[nameLabel(>=LabelWidth)]";
@@ -420,7 +420,7 @@
     hLayoutstring = @"H:[signatureLabel]-HSpace-[signatureTextField(>=TextFieldWidth)]-HSpace-|";
     hLayoutArray = [NSLayoutConstraint constraintsWithVisualFormat:hLayoutstring options:0
                                                            metrics:metricsDictionary views:viewsDictionary];
-    vLayoutString = @"V:[headPortraitImageView]-VSpace-[signatureTextField(==100)]";
+    vLayoutString = @"V:[headPortraitImageView]-VSpace-[signatureTextField(==TextFieldHeight)]";
     vLayoutArray = [NSLayoutConstraint constraintsWithVisualFormat:vLayoutString options:0
                                                            metrics:metricsDictionary views:viewsDictionary];
     [self.view addConstraints:vLayoutArray];

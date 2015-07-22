@@ -74,9 +74,9 @@
 }
 */
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    [self.view endEditing:YES];
-}
+//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+//    [self.view endEditing:YES];
+//}
 
 - (void)getContactsInfo{
     id delegate = [[UIApplication sharedApplication] delegate];
@@ -84,8 +84,8 @@
     self.managedObjectContext = [delegate managedObjectContext];
     //请求对象
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"PersonInfo"];
-    //排序对象
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    //排序对象,排序的key必须和分组的key一致
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"initialOfName" ascending:YES];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
     [fetchRequest setSortDescriptors:sortDescriptors];
     
@@ -110,7 +110,11 @@
 }
 
 - (void)searchContactsWithKeyText:(NSString *)keyText{
-    NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", keyText];
+    NSPredicate *searchPredicate = nil;
+    if (![keyText isEqualToString:@""]) {
+        searchPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", keyText];
+    }
+    
     [self.fetchedResultsController.fetchRequest setPredicate:searchPredicate];
     
     //delete cache
@@ -149,8 +153,7 @@
     
     cell.textLabel.text = personInfo.name;
     cell.imageView.image = [UIImage imageWithContentsOfFile:personInfo.headPortrait];
-    //cell.imageView.contentMode = UIViewContentModeScaleToFill;
-        
+    
     return cell;
 }
 
@@ -187,6 +190,11 @@
 //===========UITableViewDelegate protocol==============
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
     return UITableViewCellEditingStyleDelete;
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self.searchBar resignFirstResponder]; //quit keyboard
+    return indexPath;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -272,6 +280,8 @@
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
     searchBar.text = nil;
+    [searchBar resignFirstResponder];
+    
     [self.fetchedResultsController.fetchRequest setPredicate:nil];
     
     //delete cache
@@ -285,6 +295,12 @@
     }
     
     [self.tableView reloadData];
+}
+
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    [self searchContactsWithKeyText:searchBar.text];
+    [searchBar resignFirstResponder];
 }
 
 @end
